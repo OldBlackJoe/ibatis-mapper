@@ -9,7 +9,7 @@ function ibatisMapper() {
 }
 
 ibatisMapper.prototype.createMapper = function(xmls) {
-  const queryTypes = [ 'sql', 'select', 'insert', 'update', 'delete' ];
+  const queryTypes = [ 'statement', 'select', 'insert', 'update', 'delete' ];
 
   // Parse each XML files
   for (var i = 0, xml; xml = xmls[i]; i++) {
