@@ -90,7 +90,7 @@ ibatisMapper.prototype.getStatement = function(namespace, sql, param, format) {
   try{
     for (var i = 0, children; children = iBatisMapper[namespace][sql][i]; i++) {
       // Convert SQL statement recursively
-      statement += convert.convertChildren(children, param, namespace, iBatisMapper, true);
+      statement += convert.convertChildren(children, param, namespace, iBatisMapper);
     }
     
     // Check not converted Parameters
