@@ -20,6 +20,6 @@ ibatis-mapper supports all of dynamic SQL elements.<br>
 
 ## Change Log ##
 
-### 1.0.0 ###
+### 0.1.0 ###
 
 * Initial Version
