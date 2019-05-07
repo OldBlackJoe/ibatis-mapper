@@ -27,7 +27,7 @@ jobs:
 
       - run:
           name: Run tests
-          command: cd ~/repo/test/ ; npm test
+          command: cd ~/repo/test/ ; mocha
 
       - save_cache:
           paths:
