@@ -1,5 +1,5 @@
 var ibatisMapper = require('../index');
-ibatisMapper.createMapper([ './test.xml' ]);
+ibatisMapper.createMapper([ './test/test.xml' ]);
 
 describe("Unit Tests for iBatis-mapper", function(){
   it("1) #{...} parameters", function(done){
