@@ -23,3 +23,4 @@ ibatis-mapper supports all of dynamic SQL elements.<br>
 ### 0.1.0 ###
 
 * Initial Version
+* Test for Circle CI
