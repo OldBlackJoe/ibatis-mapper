@@ -9,8 +9,6 @@ function ibatisMapper() {
 }
 
 ibatisMapper.prototype.createMapper = function(xmls) {
-  const queryTypes = [ 'statement', 'select', 'insert', 'update', 'delete' ];
-
   // Parse each XML files
   for (var i = 0, xml; xml = xmls[i]; i++) {
     try{
@@ -86,7 +84,7 @@ ibatisMapper.prototype.getStatement = function(namespace, sql, param, format) {
   if (iBatisMapper[namespace] == undefined) throw new Error('Namespace [' + namespace + '] not exists.');
   if (sql == null) throw new Error('SQL ID should not be null.');
   if (iBatisMapper[namespace][sql] == undefined) throw new Error('SQL ID [' + sql + '] not exists');
-  
+
   try{
     for (var i = 0, children; children = iBatisMapper[namespace][sql][i]; i++) {
       // Convert SQL statement recursively
