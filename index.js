@@ -30,7 +30,7 @@ ibatisMapper.prototype.createMapper = function(xmls) {
 };
 
 findMapper = function(children) {
-  var queryTypes = [ 'statement', 'select', 'insert', 'update', 'delete' ];
+  var queryTypes = [ 'statement', 'select', 'insert', 'update', 'delete', 'sql' ];
 
   if (children.type == 'tag' && children.name == 'sqlMap') {
     // Add Mapper
@@ -53,6 +53,31 @@ findMapper = function(children) {
     }
   }
 }
+
+function replaceIncludeElements (xmlChildren, xmlNamespace) {
+  var newChildren = []
+  for (var i = 0; i < xmlChildren.length; i++) {
+    if (xmlChildren[i].name === 'include') {
+      var refid = xmlChildren[i].attrs.refid
+      var sqlChildren = iBatisMapper[xmlNamespace][refid]
+      if (sqlChildren.some(child => child.name === 'include')) {
+        sqlChildren = replaceIncludeElements(sqlChildren, xmlNamespace)
+      }
+      newChildren = newChildren.concat(sqlChildren)
+    } else {
+      // If the element has children, recursively check them for <include> tags
+      if (xmlChildren[i].children) {
+        xmlChildren[i].children = replaceIncludeElements(
+          xmlChildren[i].children,
+          xmlNamespace
+        )
+      }
+      newChildren.push(xmlChildren[i])
+    }
+  }
+  return newChildren
+}
+
 
 replaceCdata = function(rawText) {
   var cdataRegex = new RegExp('(<!\\[CDATA\\[)([\\s\\S]*?)(\\]\\]>)', 'g');
@@ -77,6 +102,7 @@ replaceCdata = function(rawText) {
 }
 
 ibatisMapper.prototype.getStatement = function(namespace, sql, param, format) {
+  iBatisMapper[namespace][sql] = replaceIncludeElements(iBatisMapper[namespace][sql], namespace);
   var statement = '';
   
   // Parameter Check
