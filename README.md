@@ -17,6 +17,7 @@ npm install --save ibatis-mapper
 
 ## Usage ##
 ibatis-mapper supports all of dynamic SQL elements.<br>
+npm test
 
 ## Change Log ##
 
