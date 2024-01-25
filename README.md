@@ -2,6 +2,7 @@
 
 ibatis-mapper can generate SQL statements from the iBatis3 Mapper XML file in node.js. <br>
 You can also use Dynamic SQL elements, for example, &lt;isNotNull&gt;, &lt;isEqual&gt;, &lt;iterate&gt;.
+https://ibatis.apache.org/docs/dotnet/datamapper/ch03s09.html
 
 __Table of contents__
 
